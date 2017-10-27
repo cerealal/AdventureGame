@@ -3,11 +3,10 @@ import os
 import random
 import time
 
+charxy = [1,1]
 
 wall = "X"
-air = " "
-
-
+air = "-"
 def menu():
     print("                 _                          _                          ")
     print("     /\         | |                        | |                         ")
@@ -15,23 +14,50 @@ def menu():
     print("   / /\ \    / _` | \ \ / /  / _ \ | '_ \  | __| | | | | | '__|  / _ \ ")
     print("  / ____ \  | (_| |  \ V /  |  __/ | | | | | |_  | |_| | | |    |  __/ ")
     print(" /_/    \_\  \__,_|   \_/    \___| |_| |_|  \__|  \__,_| |_|     \___| ")
+def player_input(width,hight):
+    move = input("What do you want to do?: ")
+    if move == "north" and charxy[1] > int(hight) - 1:
+        charxy[1] + 1
+    if move == "south" and charxy[1] > int(hight) + 1:
+        charxy[0] - 1
+    if move == "east" and charxy[0] < int(width) - 1:
+        charxy[1] - 1
+    if move == "west" and charxy[0] < int(width) + 1:
+        charxy[0] + 1
+    
+def map_gen(width,hight):
+    for i in range(int(width) + 1):
+        print(wall, end="")
+    print(wall)
+    for i in range(int(hight) - 1):
+        print(wall, end="")
+        for i in range(int(width)):
+            print(air, end="")
+        print(wall)
+    for i in range(int(width) + 1):
+        print(wall, end="")
+    print(wall)
 
-map = [wall,wall,wall,wall,wall,wall,wall,
-       wall,air,air,air,air,air,wall,
-       wall,wall,air,air,air,wall,wall,
-       wall,wall,wall,wall,wall,wall,wall]
-def layer1():
-    print (map[0] + map[1] + map[2] + map[3] + map[4] + map[5] + map[6])
+    
+
+
+
+
 
 
 #Game Loop
 while True:
     os.system('clear')
     menu()
-    layer1()
-    usrInput = input("Do you want to quit?: ")
-    if usrInput == "q":
-        sys.exit()
+    width = input("what is the width you want the map to be?: ")
+    hight = input("what is the hight you want the map to be?: ")
+    hight = int(hight) + 1
+    map_gen(width,hight)
 
+    player_input(width,hight)
+    exit()
+
+
+    
                                                      
                                                                                                               

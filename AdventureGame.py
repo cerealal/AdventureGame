@@ -21,30 +21,26 @@ def player_input(width,hight):
     if move == "north" and charxy[1] > int(hight) - 1:
         charxy[1] + 1
     else:
-        print("you cant move that way")
-    if move == "south" and charxy[1] > int(hight) + 1:
-        charxy[0] - 1
-    else:
-        print("you cant move that way")
-    if move == "east" and charxy[0] < int(width) - 1:
-        charxy[1] - 1
-    else:
-        print("you cant move that way")
-    if move == "west" and charxy[0] < int(width) + 1:
-        charxy[0] + 1
-    else:
-        print("you cant move that way")
-    if move == "q":
-        exit()
-    else:
-        print("I dont understand.")
+        if move == "south" and charxy[1] > int(hight) + 1:
+            charxy[0] - 1
+        else:
+            if move == "east" and charxy[0] < int(width) - 1:
+                charxy[1] - 1
+            else:
+                if move == "west" and charxy[0] < int(width) + 1:
+                    charxy[0] + 1
+                else:
+                    if move == "q":
+                        exit()
+                    else:
+                        print("I dont understand.")
     
     
 def map_gen(width,hight):
     for i in range(int(width) + 1):
         print(wall, end="")
     print(wall)
-    for i in range(int(hight) - 1):
+    for i in range(int(hight) - 2):
         print(wall, end="")
         for i in range(int(width)):
             print(air, end="")
@@ -64,7 +60,8 @@ hight = int(hight) + 1
 while True:
     map_gen(width,hight)
     player_input(width,hight)
-    
+    print(charxy)
+
 
 
     

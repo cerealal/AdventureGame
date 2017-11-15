@@ -1,2 +1,2 @@
 # AdventureGame
-Adventure Game is a work in progress modern text based adventure game hopefully with multiplayer in its future
+Adventure Game is a work in progress modern text based adventure game with rpg elements and ASCII art

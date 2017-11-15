@@ -5,7 +5,7 @@ import time
 
 location = "room1"
 charxy = [1,1]
-
+prvcharxy = [1,1]
 #width = 10
 #hight = 9
 wall = "X"
@@ -34,9 +34,10 @@ def player_input():
     playerInput = input("What to do?: ")
     if playerInput == "q":
         exit()
+    if playerInput == "south":
+        charxy[1] = charxy[1] + 1
 
 def map_gen(location):
-    x = 0
     if location == "room1":
         for room in room1layer1:
             print(room + " ", end="")
@@ -66,10 +67,26 @@ def map_gen(location):
             print(room + " ", end="")
         print(" ")
 
-        
-
-
-    
+def get_location(charxy):
+    print(charxy)
+    if charxy[0] == 1:
+        if charxy[1] == 1:
+            room1layer2[1] = "@"
+        elif charxy[1] == 2:
+            room1layer3[1] = "@"
+        elif charxy[1] == 3:
+            room1layer4[1] = "@"
+        elif charxy[1] == 4:
+            room1layer5[1] = "@"
+        elif charxy[1] == 5:
+            room1layer6[1] = "@"
+        elif charxy[1] == 6:
+            room1layer7[1] = "@"
+        elif charxy[1] == 7:
+            room1layer8[1] = "@"
+        else:
+            print("Invalid location")
+    return charxy
 #Old map_gen() system
 """  
 def map_gen():
@@ -86,16 +103,18 @@ def map_gen():
         print(wall)
 """
 
+
+#Setting stuff up for game loop
 os.system('clear')
 menu()
-
-
 #Game Loop
 while True:
     map_gen(location)
-    #print(charxy)
     print("")
+    get_location(charxy)
     player_input()
+    os.system('clear')
+    
 
 
 

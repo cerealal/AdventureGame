@@ -5,7 +5,7 @@ import time
 
 location = "room1"
 charxy = [1,1]
-prvcharxy = [1,1]
+prvcharxy = [1,0]
 #width = 10
 #hight = 9
 wall = "X"
@@ -30,12 +30,18 @@ def menu():
     print("  / ____ \  | (_| |  \ V /  |  __/ | | | | | |_  | |_| | | |    |  __/ ")
     print(" /_/    \_\  \__,_|   \_/    \___| |_| |_|  \__|  \__,_| |_|     \___| ")
 
-def player_input():
+def player_input(charxy,prvcharxy):
     playerInput = input("What to do?: ")
     if playerInput == "q":
         exit()
     if playerInput == "south":
-        charxy[1] = charxy[1] + 1
+        if charxy[1] != 8:
+            charxy[1] = charxy[1] + 1
+            prvcharxy[1] = prvcharxy[1] + 1
+        else:
+            print("You cant move that way")
+        
+
 
 def map_gen(location):
     if location == "room1":
@@ -67,8 +73,9 @@ def map_gen(location):
             print(room + " ", end="")
         print(" ")
 
-def get_location(charxy):
-    print(charxy)
+def get_location(charxy,prvcharxy):
+    print("CurrentPos: " + str(charxy))
+    print("PreviousPos: " + str(prvcharxy))
     if charxy[0] == 1:
         if charxy[1] == 1:
             room1layer2[1] = "@"
@@ -86,6 +93,23 @@ def get_location(charxy):
             room1layer8[1] = "@"
         else:
             print("Invalid location")
+    if prvcharxy[0] == 1:
+        if prvcharxy[1] == 1:
+            room1layer2[1] = "-"
+        elif prvcharxy[1] == 2:
+            room1layer3[1] = "-"
+        elif prvcharxy[1] == 3:
+            room1layer4[1] = "-"
+        elif prvcharxy[1] == 4:
+            room1layer5[1] = "-"
+        elif prvcharxy[1] == 5:
+            room1layer6[1] = "-"
+        elif prvcharxy[1] == 6:
+            room1layer7[1] = "-"
+        elif prvcharxy[1] == 7:
+            room1layer8[1] = "-"
+    
+    return prvcharxy
     return charxy
 #Old map_gen() system
 """  
@@ -109,10 +133,11 @@ os.system('clear')
 menu()
 #Game Loop
 while True:
+    get_location(charxy,prvcharxy)
     map_gen(location)
     print("")
-    get_location(charxy)
-    player_input()
+    get_location(charxy,prvcharxy)
+    player_input(charxy,prvcharxy)
     os.system('clear')
     
 

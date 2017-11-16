@@ -427,22 +427,18 @@ os.system('clear')
 menu()
 get_location(charxy,prvcharxy)
 #Game Loop
-while True:
-#makes sure character doesn't have a tail
 
-#gets location of character
+while True:
+#Gets location of the character
     get_location(charxy,prvcharxy)
-#generates map with character
+#Generates the map with a character in a location
     map_gen(location)
-#print is for python being wierd and printing line by line
     print("")
-#Player inputs action
-    
+#prvcharxy is the previous location of the character
     prvcharxy[0] = charxy[0]
     prvcharxy[1] = charxy[1]
+#player input for actions function
     player_input(charxy,prvcharxy)
-#gets location of character
-#clears the screen
     os.system('clear')
     
 
